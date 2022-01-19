@@ -20,7 +20,7 @@ function [sig] = sine_gen(amp, f, fs, T)
 
 I applied this using the suggested parameters and generated the following plot
 
-![](media/Exercise 1 Graph.png)
+![](<media/Exercise 1 Graph.png>)
 
 I learnt that you can generate signals (and plot them) in matlab, that you can adjust parameters such as amplitude, sampling frequency, and duration.
 
