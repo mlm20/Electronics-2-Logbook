@@ -96,3 +96,37 @@ In the Fourier Transform however you can clearly see the two spikes showing the 
 
 ## Exercise 5: Projection using dot product
 
+The following inner products were calculated in Matlab
+
+```matlab
+s1 = sine_gen(1.0, 400, 10000, 1);
+s2 = sine_gen(0.5, 1000, 10000, 1);
+s3 = sine_gen(1.0, 401, 10000, 1);
+
+dot_product = s1 * s2';
+dot_product_2 = s1 * s3';
+dot_product_3 = (s1 + s2) * s1';
+
+disp(dot_product)
+disp(dot_product_2)
+disp(dot_product_3)
+```
+
+The results were
+
+```matlab
+s1 * s2' = 1.8263e-13
+s1 * s3' = -1.9668e-10
+(s1 + s2) * s1' = 5000
+```
+
+By interpreting these results with the projection method, they show that `s1` contains very little of `s2` and `s3`.
+
+The result `(s1 + s2) * s1' = 5000` shows that the signal generated when `s1` is added to `s2` is 50% `s1`.
+
+## Exercise 6: Using PyBench board as a spectrum analyser
+
+The PyBench was set up and the spectrum analyser functionality was tested.
+
+![](media/board.jpeg)
+
