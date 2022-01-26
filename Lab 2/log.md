@@ -119,3 +119,64 @@ The sine wave has a single consistent frequency and thus only has a single spike
 The square wave is a superposition of many sine waves and thus has many spikes.
 
 The triangle wave is a superposition of of sine waves too but has a more obvious frequency compared to the square waves, which is why its first spike is more prominent in comparison to subsequent spikes. Compared to the square wave spectrum.
+
+## Task 3 - Capture and analyse microphone signals
+
+The following Matlab script was used to produce a time-domain and frequency-domain plot of the signal captured from the PyBoard’s microphone. 
+
+```matlab
+% Lab 2 - Task 3 - Capture and analyse microphone sound signal
+%
+clear all
+ports = serialportlist;
+pb = PyBench(ports(end));
+
+% Set sampling frequency
+fs = 8000;
+pb = pb.set_samp_freq(fs);
+
+% Capture N samples
+N = 1000;
+samples = pb.get_mic(N);
+data = samples - mean(samples);
+
+% plot data
+figure(1);
+clf
+plot(data);
+xlabel("Sample no")
+ylabel("Signal voltage");
+title("Microphone signal");
+
+% find and plot spectrum
+figure(2)
+plot_spec(data, fs)
+```
+
+It was tested on our whistling as well as a 2000 Hz sound from a tuning fork app. The plots from the tuning fork app are shown below.
+
+![](media/task3fig1.png)
+
+![](media/task3fig2.png)
+
+### Spectrum Analyser
+
+The following code was added to make this process into a continuously updating frequency analyser.
+
+```matlab
+% repeat capture and plot spectrum
+while true
+    samples = pb.get_mic(N);
+    data = samples - mean(samples);
+    figure(2)
+    clf;
+    plot_spec(data,fs);
+end
+```
+
+The following frequency spectrum was generated from my lab partner singing, harmonics are visible.
+
+![](media/task3fig3.png)
+
+## Task 4 - Windowing effect on a signal
+
