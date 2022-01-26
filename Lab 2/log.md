@@ -1,4 +1,8 @@
-# Lab 2 Log
+
+
+# 
+
+Lab 2 Log
 
 ## Task 1 - Connecting the PyBench board to your PC or Macbook running Matlab
 
@@ -179,4 +183,53 @@ The following frequency spectrum was generated from my lab partner singing, harm
 ![](media/task3fig3.png)
 
 ## Task 4 - Windowing effect on a signal
+
+The code from the previous task was modified to use the `plot_spec_dB()` function instead of `plot_spec` to plot a window of the function using the logarithmic Decibel scale.
+
+The following plots were obtained for *1000 Hz* and *1100 Hz* respectively.
+
+![](media/task4fig1.png)
+
+*1000 Hz*
+
+![](media/task4fig2.png)
+
+*1100 Hz*
+
+The two signals generated, despite only having a frequency difference of 100 Hz are very different. This difference is due to the *windowing effect*.
+
+### Hamming window
+
+The spectrum generator was amended to be the following code in order to generate a Hamming window.
+
+```matlab
+% find and plot spectrum
+figure(2)
+plot_spec_(data, fs)
+
+% create a hamming window
+window = hamming(length(data));
+while true
+    samples = pb.get_mic(N);
+    data = samples - mean(samples);
+    clf;
+    plot_spec_dB(data,fs);
+    hold on
+    plot_spec_dB(data.*window, fs);
+end
+```
+
+This generated the following plots for the same frequencies
+
+![](media/task4fig3.png)
+
+*1000 Hz*
+
+![](media/task4fig4.png)
+
+*1100 Hz*
+
+The signals with and without the Hamming Window are almost identical for *1000 Hz* however there is a significant difference for *1100 Hz*
+
+## Task 5 - Music signal segmentation and analysis
 
