@@ -1,0 +1,14 @@
+% Lab 2 - Task 2 - Signal generation and capture with PyBench
+%
+clear all
+ports = serialportlist;     % find all serial ports
+pb = PyBench(ports(end));   % create a PyBench object with last port
+
+% Set parameters
+
+f = 440;                    % signal frequency
+fs = 8000;                  % sampling frequency
+pb = pb.set_sig_freq(f);
+pb = pb.set_samp_freq(fs);
+
+
