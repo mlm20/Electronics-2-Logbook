@@ -233,3 +233,72 @@ The signals with and without the Hamming Window are almost identical for *1000 H
 
 ## Task 5 - Music signal segmentation and analysis
 
+In order to perofrm the music analysis the following code was used
+
+```matlab
+% Lab 2 - Task 5 - Analyse two drum beats
+%
+clear all
+[sig fs] = audioread("two_drums.wav");
+sound(sig, fs)
+
+% plot the signal
+
+figure(1);
+clf;
+plot(sig);
+xlabel("Sample no");
+ylabel("Signal (v)");
+title("Two Drums");
+
+% Divide the signal into 20 msec segments,
+% and computer the energy of the signal in
+% that segment.
+
+T = 0.02;       % 20 ms segments
+N = fs * T;     % N samples
+E = [];
+
+for i = 1 : N : length(sig) - N + 1
+    seg = sig(i : i + N - 1);
+    E = [E seg' * seg];
+end
+
+% plot the energy graph and the peak values
+
+figure(2);
+clf;
+x = 1:length(E);
+plot(x, E)
+xlabel("Segment number");
+ylabel("Energy");
+hold on
+
+% find local maxima
+
+[pks locs] = findpeaks(E);
+plot(locs, pks, "o");
+hold off
+
+% plot spectrum of energy
+
+figure(3)
+plot_spec(E - mean(E), 1/T);
+```
+
+This generated the following graphs.
+
+![](media/task5fig1.png)
+
+*Time domain voltage plot of signal*
+
+![](media/task5fig2.png)
+
+*Time domain energy plot*
+
+![](media/task5fig3.png)
+
+*Frequency domain energy plot*
+
+## Task 6 – Analysing complex music
+
