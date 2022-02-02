@@ -1,8 +1,6 @@
 
 
-# 
-
-Lab 2 Log
+# Lab 2 Log
 
 ## Task 1 - Connecting the PyBench board to your PC or Macbook running Matlab
 
