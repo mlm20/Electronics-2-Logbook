@@ -49,9 +49,9 @@ The following values were generated for the graph (between `x_dcL` and `x_dcH`)
 
 
 
-### DC Characteristic using Matlab
+### DC Characteristic using MATLAB
 
-The following code was used to generate the DC characteristic using Matlab.
+The following code was used to generate the DC characteristic using MATLAB.
 
 ```matlab
 % lab 3 task 1
@@ -91,4 +91,22 @@ The system is non-linear because `P = V^2 / R` which implies a parabolic relatio
 The system is approximated linear from 0 to 1.5 and from roughly 1.3 to 1.6.
 
 ## Task 2 - Frequency Response of the Bulb Board system – Theoretical only
+
+```matlab
+% lab3 task 2
+
+f = (0:0.1:20);
+D = [0.038 1.19 43 1000];
+s = 1i * 2 * pi * f;
+G = 1000 ./ abs(polyval(D,s));
+Gdb = 20 * log10(G);
+
+figure;
+plot(f,Gdb);
+xlabel("Freq Hz")
+ylabel("Gain dB")
+title("frequency response - theoretical");
+```
+
+![](media/frequency_response.png)
 
