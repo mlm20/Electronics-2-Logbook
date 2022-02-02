@@ -92,6 +92,8 @@ The system is approximated linear from 0 to 1.5 and from roughly 1.3 to 1.6.
 
 ## Task 2 - Frequency Response of the Bulb Board system – Theoretical only
 
+The following supplied code was typed out, this generated the following graph.
+
 ```matlab
 % lab3 task 2
 
@@ -110,3 +112,14 @@ title("frequency response - theoretical");
 
 ![](media/frequency_response.png)
 
+The frequency response shows that 5V is the resonant frequency, and more widely the behaviour of the bulb board at different frequencies.
+
+The following values for G(s) were calculated
+
+| Frequency (Hz) | G(s)          |
+| -------------- | ------------- |
+| 0              | 0             |
+| 5              | 12.2 - 20.5j  |
+| 20             | -37.2 + 15.8j |
+
+These are complex numbers, but if we take the real components these line up with the frequency response generated above.
