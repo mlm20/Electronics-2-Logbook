@@ -1,7 +1,5 @@
 # Lab 3 Log
 
-[TOC]
-
 ## Setup
 
 The Bulb Board was setup to the PyBench as described. The potentiometer was turned until the PyBench displayed ***1.97 V*** - between *1.9* and *2.1 V*.
