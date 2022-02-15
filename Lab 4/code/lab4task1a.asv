@@ -1,0 +1,12 @@
+% testing the accelrometer
+clear all
+close("all")
+ports = serialportlist;
+pb = PyBench(ports(end));
+N = 500;                    % 500 time points
+end_time = 10.0;            % initial guess of time axis range
+while true
+    % plot axes
+    figure(1)
+    clf(1)
+    axis()

@@ -168,7 +168,7 @@ It generated the following plot:
 
 The measured values of the gain were `G = 17.28` and `G_dB = 24.7516`. These are different to the calculated theoretical value of `12.2`.
 
-==why does difference exist==
+This difference in the gains exists since in the case of the measured values there is lots of ambient light that drives up the readings of the sensor.
 
 The measurements were repeated for the following frequencies
 

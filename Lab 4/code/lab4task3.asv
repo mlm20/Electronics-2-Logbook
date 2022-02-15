@@ -1,0 +1,21 @@
+% complementary filter
+clear all
+close("all")
+ports = serialportlist;
+pb = PyBench(ports(end));
+model = IMU_3D;
+N = 50;
+fig1 = figure(1);
+gx = 0; gy = 0;                         % gyro initial angles
+angle_x = 0; angle_y = 0;               % combined angle using filter
+alpha = 0.7; beta = 1-alpha;            % weighting factor
+tic
+while true
+    for i = 1:N
+        [p, r] = pb.get_accel();
+        [x, y, z] = pb.get_gyro();
+        dt = toc;
+        tic;
+
+        % integration for gyro angles
+        gx = max(min(gx + x * dt, pi / 2),)
