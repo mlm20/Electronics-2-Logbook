@@ -183,7 +183,7 @@ The measurements were repeated for the following frequencies
 
 This was plotted onto the following graph
 
-![](media/Graph 2.png)
+![](<media/Graph 2.png>)
 
 This is a very similar shape to the theoretical graph generated in task 2. It confirms that 5 Hz (or similar) is the resonant frequency of the system.
 
