@@ -174,7 +174,7 @@ while true
 end
 ```
 
-![](media/task3pic1#.png)
+![](media/task3pic1.png)
 
 ## Task 4 - Using the OLED driver on the PyBench Board
 
