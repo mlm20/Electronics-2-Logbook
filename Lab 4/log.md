@@ -176,3 +176,65 @@ end
 
 ![](media/task3pic1#.png)
 
+## Task 4 - Using the OLED driver on the PyBench Board
+
+The following code was used
+
+```python
+"""
+
+Lab 4 Task 4
+
+OLED display driver
+
+"""
+
+import pyb                      # Pyboard lib
+from pyb import LED, ADC, Pin   # Import classses from lib
+from oled_938 import OLED_938   # Use OLED display driver
+
+# Create peripheral objects
+b_LED = LED(4)                  # blue LED
+pot = ADC(Pin("X11"))           # 5k Ohm potentiometer to ADC input on pin X11
+
+# I2C connceted to Y9, Y10 (I2C bus 2) and Y11 is reset low active
+i2c = pyb.I2C(2, pyb.I2C.MASTER)
+oled = OLED_938(
+    pinout = {
+        "sda": "Y10",
+        "scl": "Y9",
+        "res": "Y8"
+    },
+    height = 64,
+    external_vcc = False,
+    i2c_devid = i2c.scan()[0]
+)
+oled.poweron()
+oled.init_display()
+
+# Message
+oled.draw_text(0, 0, "Hello World!") # each character is 6x8 pixels
+
+tic = pyb.millis()              # store start time
+while True:
+    b_LED = pyb.toggle()
+    toc = pyb.millis()          # read elapsed time
+    oled.draw_text(0, 20, f"Delay Time: {(toc - tic) * 0.001}")
+    oled.draw_text(0, 40, f"POT5K reading: {pot.read()}")
+    tic = pyb.millis()          # start time
+    oled.display()
+    delay = pyb.rng()%1000      # make rng between 0 & 999
+    pyb.delay(delay)            # delay in milliseconds  
+```
+
+In order to make the text appear in the centre of the screen, the position during the following function must be changed.
+
+```python
+oled.draw_text(0, 0, "Hello World!")
+```
+
+This is currently `0, 0` (top left corner). If this is changed to the following code it appears in the centre of the screen.
+
+```python
+oled.draw_text(64, 32, "Hello World!")
+```
